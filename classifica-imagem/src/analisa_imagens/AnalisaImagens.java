@@ -10,11 +10,11 @@ public class AnalisaImagens {
 	/*
 	 * percorre imagens para encontrar o pixel mais presente na parte superior, o
 	 * pixel mais presente na parte central e o pixel mais presente na parte
-	 * inferior
+	 * inferior. Retorna um int[][] com as informações
 	 */
-	public static void descobrePixelsMaisPresentes(boolean ePersonagem1) {
-		PixelsPresentes pixelsMP1 = new PixelsPresentes(); // armazenará os mais presentes da imagem 1
-		PixelsPresentes pixelsMP2 = new PixelsPresentes(); // armazenará os mais presentes da imagem 2
+	public static int[][] descobrePixelsMaisPresentes(boolean ePersonagem1) {
+		PixelsPresentes pixelsMP1 = new PixelsPresentes(); // armazenará os mais presentes do personagem 1
+		PixelsPresentes pixelsMP2 = new PixelsPresentes(); // armazenará os mais presentes do personagem 2
 
 		File pastaPersonagem1 = new File("imagens/Homer");
 		File pastaPersonagem2 = new File("imagens/Marge");
@@ -25,7 +25,7 @@ public class AnalisaImagens {
 
 		int i = 0;
 		// cria a buffered image do personagem atual para analisar
-		for (int c = 0; c < 10; c++) {
+		for (int c = 0; c < 40; c++) {
 			if (ePersonagem1) {
 				caminhoImagemAtual = "";
 				caminhoImagemAtual = caminhoImagemAtual.concat("imagens/Homer/");
@@ -51,52 +51,79 @@ public class AnalisaImagens {
 			 */
 			if ((tamanhoTotal > 300000) && (tamanhoTotal < 1000000)) {
 				if (ePersonagem1) {
-					System.out.println((c + 1) + "ª imagem analisada no momento: " + imagensPersonagem1[i]);
-					System.out.println("Tamanho: " + (imagemBI.getWidth()) + "x" + (imagemBI.getHeight()));
+					// System.out.println((c + 1) + "ª imagem analisada no momento: " + imagensPersonagem1[i]);
+					// System.out.println("Tamanho: " + (imagemBI.getWidth()) + "x" + (imagemBI.getHeight()));
 					// primeiro coleta o pixel mais presente na parte superior
 					pixelsMP1 = retornaMaisPresenteNaParteSuperior(pixelsMP1, imagemBI);
-					System.out.println("Pixel atual mais presente na parte superior: " + pixelsMP1.pixelPresente1[0]
-							+ " - " + pixelsMP1.pixelPresente1[1] + " - " + pixelsMP1.pixelPresente1[2]);
-					System.out.println("Quantidade desse pixel: "
-							+ pixelsMP1.contaPixelsSuperior[pixelsMP1.pixelPresente1[0]][pixelsMP1.pixelPresente1[1]][pixelsMP1.pixelPresente1[2]]);
+					// System.out.println("Pixel atual mais presente na parte superior: " + pixelsMP1.pixelPresente1[0]
+							// + " - " + pixelsMP1.pixelPresente1[1] + " - " + pixelsMP1.pixelPresente1[2]);
+					// System.out.println("Quantidade desse pixel: "
+							// + pixelsMP1.contaPixelsSuperior[pixelsMP1.pixelPresente1[0]][pixelsMP1.pixelPresente1[1]][pixelsMP1.pixelPresente1[2]]);
 					// agora coleta o pixel mais presente na parte central
 					pixelsMP1 = retornaMaisPresenteNaParteCentral(pixelsMP1, imagemBI);
-					System.out.println("Pixel atual mais presente na parte central: " + pixelsMP1.pixelPresente2[0]
-							+ " - " + pixelsMP1.pixelPresente2[1] + " - " + pixelsMP1.pixelPresente2[2]);
-					System.out.println("Quantidade desse pixel: "
-							+ pixelsMP1.contaPixelsCentral[pixelsMP1.pixelPresente2[0]][pixelsMP1.pixelPresente2[1]][pixelsMP1.pixelPresente2[2]]);
+					// System.out.println("Pixel atual mais presente na parte central: " + pixelsMP1.pixelPresente2[0]
+							// + " - " + pixelsMP1.pixelPresente2[1] + " - " + pixelsMP1.pixelPresente2[2]);
+					// System.out.println("Quantidade desse pixel: "
+							// + pixelsMP1.contaPixelsCentral[pixelsMP1.pixelPresente2[0]][pixelsMP1.pixelPresente2[1]][pixelsMP1.pixelPresente2[2]]);
 					// agora coleta o pixel mais presente na parte inferior
 					pixelsMP1 = retornaMaisPresenteNaParteInferior(pixelsMP1, imagemBI);
-					System.out.println("Pixel atual mais presente na parte inferior: " + pixelsMP1.pixelPresente3[0]
-							+ " - " + pixelsMP1.pixelPresente3[1] + " - " + pixelsMP1.pixelPresente3[2]);
-					System.out.println("Quantidade desse pixel: "
-							+ pixelsMP1.contaPixelsInferior[pixelsMP1.pixelPresente3[0]][pixelsMP1.pixelPresente3[1]][pixelsMP1.pixelPresente3[2]]);
+					// System.out.println("Pixel atual mais presente na parte inferior: " + pixelsMP1.pixelPresente3[0]
+							// + " - " + pixelsMP1.pixelPresente3[1] + " - " + pixelsMP1.pixelPresente3[2]);
+					// System.out.println("Quantidade desse pixel: "
+							// + pixelsMP1.contaPixelsInferior[pixelsMP1.pixelPresente3[0]][pixelsMP1.pixelPresente3[1]][pixelsMP1.pixelPresente3[2]]);
 				} else if (ePersonagem1 == false) {
-					System.out.println((c + 1) + "ª imagem analisada no momento: " + imagensPersonagem2[i]);
-					System.out.println("Tamanho: " + (imagemBI.getWidth()) + "x" + (imagemBI.getHeight()));
+					// System.out.println((c + 1) + "ª imagem analisada no momento: " + imagensPersonagem2[i]);
+					// System.out.println("Tamanho: " + (imagemBI.getWidth()) + "x" + (imagemBI.getHeight()));
 					// primeiro coleta o pixel mais presente na parte superior
 					pixelsMP2 = retornaMaisPresenteNaParteSuperior(pixelsMP2, imagemBI);
-					System.out.println("Pixel atual mais presente na parte superior: " + pixelsMP2.pixelPresente1[0]
-							+ " - " + pixelsMP2.pixelPresente1[1] + " - " + pixelsMP2.pixelPresente1[2]);
-					System.out.println("Quantidade desse pixel: "
-							+ pixelsMP2.contaPixelsSuperior[pixelsMP2.pixelPresente1[0]][pixelsMP2.pixelPresente1[1]][pixelsMP2.pixelPresente1[2]]);
+					// System.out.println("Pixel atual mais presente na parte superior: " + pixelsMP2.pixelPresente1[0]
+							// + " - " + pixelsMP2.pixelPresente1[1] + " - " + pixelsMP2.pixelPresente1[2]);
+					// System.out.println("Quantidade desse pixel: "
+							// + pixelsMP2.contaPixelsSuperior[pixelsMP2.pixelPresente1[0]][pixelsMP2.pixelPresente1[1]][pixelsMP2.pixelPresente1[2]]);
 					// agora coleta o pixel mais presente na parte central
 					pixelsMP2 = retornaMaisPresenteNaParteCentral(pixelsMP2, imagemBI);
-					System.out.println("Pixel atual mais presente na parte central: " + pixelsMP2.pixelPresente2[0]
-							+ " - " + pixelsMP2.pixelPresente2[1] + " - " + pixelsMP2.pixelPresente2[2]);
-					System.out.println("Quantidade desse pixel: "
-							+ pixelsMP2.contaPixelsCentral[pixelsMP2.pixelPresente2[0]][pixelsMP2.pixelPresente2[1]][pixelsMP2.pixelPresente2[2]]);
+					// System.out.println("Pixel atual mais presente na parte central: " + pixelsMP2.pixelPresente2[0]
+							// + " - " + pixelsMP2.pixelPresente2[1] + " - " + pixelsMP2.pixelPresente2[2]);
+					// System.out.println("Quantidade desse pixel: "
+							// + pixelsMP2.contaPixelsCentral[pixelsMP2.pixelPresente2[0]][pixelsMP2.pixelPresente2[1]][pixelsMP2.pixelPresente2[2]]);
 					// agora coleta o pixel mais presente na parte inferior
 					pixelsMP2 = retornaMaisPresenteNaParteInferior(pixelsMP2, imagemBI);
-					System.out.println("Pixel atual mais presente na parte inferior: " + pixelsMP2.pixelPresente3[0]
-							+ " - " + pixelsMP2.pixelPresente3[1] + " - " + pixelsMP2.pixelPresente3[2]);
-					System.out.println("Quantidade desse pixel: "
-							+ pixelsMP2.contaPixelsInferior[pixelsMP2.pixelPresente3[0]][pixelsMP2.pixelPresente3[1]][pixelsMP2.pixelPresente3[2]]);
+					// System.out.println("Pixel atual mais presente na parte inferior: " + pixelsMP2.pixelPresente3[0]
+							// + " - " + pixelsMP2.pixelPresente3[1] + " - " + pixelsMP2.pixelPresente3[2]);
+					// System.out.println("Quantidade desse pixel: "
+							// + pixelsMP2.contaPixelsInferior[pixelsMP2.pixelPresente3[0]][pixelsMP2.pixelPresente3[1]][pixelsMP2.pixelPresente3[2]]);
 				}
 			} else {
 				c--;
 			}
 		}
+		/*
+		 * salva informações de pixels mais presentes das imagens do personagem
+		 * analisado
+		 */
+		int[][] infoPixels = new int[3][3];
+		if (ePersonagem1) {
+			infoPixels[0][0] = pixelsMP1.pixelPresente1[0];
+			infoPixels[0][1] = pixelsMP1.pixelPresente1[1];
+			infoPixels[0][2] = pixelsMP1.pixelPresente1[2];
+			infoPixels[1][0] = pixelsMP1.pixelPresente2[0];
+			infoPixels[1][1] = pixelsMP1.pixelPresente2[1];
+			infoPixels[1][2] = pixelsMP1.pixelPresente2[2];
+			infoPixels[2][0] = pixelsMP1.pixelPresente3[0];
+			infoPixels[2][1] = pixelsMP1.pixelPresente3[1];
+			infoPixels[2][2] = pixelsMP1.pixelPresente3[2];
+		} else {
+			infoPixels[0][0] = pixelsMP2.pixelPresente1[0];
+			infoPixels[0][1] = pixelsMP2.pixelPresente1[1];
+			infoPixels[0][2] = pixelsMP2.pixelPresente1[2];
+			infoPixels[1][0] = pixelsMP2.pixelPresente2[0];
+			infoPixels[1][1] = pixelsMP2.pixelPresente2[1];
+			infoPixels[1][2] = pixelsMP2.pixelPresente2[2];
+			infoPixels[2][0] = pixelsMP2.pixelPresente3[0];
+			infoPixels[2][1] = pixelsMP2.pixelPresente3[1];
+			infoPixels[2][2] = pixelsMP2.pixelPresente3[2];
+		}
+		return infoPixels;
 	}
 
 	/*
@@ -193,6 +220,25 @@ public class AnalisaImagens {
 			}
 		}
 		return pixelsMP;
+	}
+
+	/*
+	 * se o int[][] que guarda as informações dos pixels mais presentes estiver com
+	 * elas, mostra as informações
+	 */
+	public static void mostraPixelsMaisPresentes(int[][] infoPixels, boolean ePersonagem1) {
+		System.out.println("\nPixels mais presentes");
+		if (ePersonagem1) {
+			System.out.println("Homer");
+			System.out.println("1º: " + infoPixels[0][0] + " - " + infoPixels[0][1] + " - " + infoPixels[0][2]);
+			System.out.println("2º: " + infoPixels[1][0] + " - " + infoPixels[1][1] + " - " + infoPixels[1][2]);
+			System.out.println("3º: " + infoPixels[2][0] + " - " + infoPixels[2][1] + " - " + infoPixels[2][2]);
+		} else {
+			System.out.println("Marge");
+			System.out.println("1º: " + infoPixels[0][0] + " - " + infoPixels[0][1] + " - " + infoPixels[0][2]);
+			System.out.println("2º: " + infoPixels[1][0] + " - " + infoPixels[1][1] + " - " + infoPixels[1][2]);
+			System.out.println("3º: " + infoPixels[2][0] + " - " + infoPixels[2][1] + " - " + infoPixels[2][2]);
+		}
 	}
 
 }
