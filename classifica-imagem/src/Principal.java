@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import analisa_imagens.AnalisaImagens;
 import analisa_imagens.VerificaPixels;
+import extrai_caracteristicas.ExtraiCaracteristicas;
 
 public class Principal {
 	public static void main(String[] args) {
@@ -10,15 +11,10 @@ public class Principal {
 		System.out.println("--    Classifica imagens dos Simpsons    --");
 		System.out.println("Homer x Marge");
 		String menu = "\nMenu \n1. Analisa os pixels mais presentes em 40 imagens diferentes, para cada personagem \n2. Digita um pixel e verifica quantos dentro de uma margem próxima a ele estão presentes na imagem passada"
-				+ "\n3. ... \n0. Sai do programa";
+				+ "\n3. Cria arquivo arff com características dos personagens \n4. ...\n0. Sai do programa";
 		int op = -1;
 		int[][] pixelsPresentesPersonagem1 = new int[3][3];
 		int[][] pixelsPresentesPersonagem2 = new int[3][3];
-		/*
-		 * algumas opções do menu só estarão acessíveis se os pixels mais presentes
-		 * forem encontrados
-		 */
-		boolean pixelsPresentesEncontrados = false;
 
 		do {
 			try {
@@ -37,7 +33,7 @@ public class Principal {
 					// mostra os pixels que foram salvos
 					AnalisaImagens.mostraPixelsMaisPresentes(pixelsPresentesPersonagem1, true);
 					AnalisaImagens.mostraPixelsMaisPresentes(pixelsPresentesPersonagem2, false);
-					pixelsPresentesEncontrados = true;
+					System.out.println("Pixels encontrados estão salvos e serão usados para gerar arquivo arff");
 					break;
 
 				case 2:
@@ -47,6 +43,11 @@ public class Principal {
 					break;
 
 				case 3:
+					System.out.println("Cria arquivo arff com características dos personagens");
+					ExtraiCaracteristicas.extrair();
+					break;
+
+				case 4:
 					System.out.println("...");
 					break;
 

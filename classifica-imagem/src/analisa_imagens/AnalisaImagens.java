@@ -16,87 +16,79 @@ public class AnalisaImagens {
 		PixelsPresentes pixelsMP1 = new PixelsPresentes(); // armazenará os mais presentes do personagem 1
 		PixelsPresentes pixelsMP2 = new PixelsPresentes(); // armazenará os mais presentes do personagem 2
 
-		File pastaPersonagem1 = new File("imagens/Homer");
-		File pastaPersonagem2 = new File("imagens/Marge");
-		String[] imagensPersonagem1 = pastaPersonagem1.list();
-		String[] imagensPersonagem2 = pastaPersonagem2.list();
+		File pastaPersonagens = new File("imagens");
+		String[] imagensPersonagens = pastaPersonagens.list();
 		String caminhoImagemAtual = ""; // mostrará a imagem atual com o seu caminho, para criar o buffered image
 		BufferedImage imagemBI = null;
 
-		int i = 0;
-		// cria a buffered image do personagem atual para analisar
-		for (int c = 0; c < 40; c++) {
-			if (ePersonagem1) {
+		if (ePersonagem1) {
+			for (int c = 0; c < 40; c++) {
 				caminhoImagemAtual = "";
-				caminhoImagemAtual = caminhoImagemAtual.concat("imagens/Homer/");
-				caminhoImagemAtual = caminhoImagemAtual.concat(imagensPersonagem1[i]);
-				i++;
-			} else {
-				caminhoImagemAtual = "";
-				caminhoImagemAtual = caminhoImagemAtual.concat("imagens/Marge/");
-				caminhoImagemAtual = caminhoImagemAtual.concat(imagensPersonagem2[i]);
-				i++;
-			}
+				caminhoImagemAtual = caminhoImagemAtual.concat("imagens/");
+				caminhoImagemAtual = caminhoImagemAtual.concat(imagensPersonagens[c]);
 
-			try {
-				imagemBI = ImageIO.read(new File(caminhoImagemAtual));
-			} catch (IOException e) {
-				System.out.println("Erro com BufferedImage");
-			}
-
-			int tamanhoTotal = imagemBI.getWidth() * imagemBI.getHeight();
-			/*
-			 * se a imagem tem um tamanho que se encaixe na condição, percorre a imagem para
-			 * procurar os pixels mais presentes
-			 */
-			if ((tamanhoTotal > 300000) && (tamanhoTotal < 1000000)) {
-				if (ePersonagem1) {
-					// System.out.println((c + 1) + "ª imagem analisada no momento: " + imagensPersonagem1[i]);
-					// System.out.println("Tamanho: " + (imagemBI.getWidth()) + "x" + (imagemBI.getHeight()));
-					// primeiro coleta o pixel mais presente na parte superior
-					pixelsMP1 = retornaMaisPresenteNaParteSuperior(pixelsMP1, imagemBI);
-					// System.out.println("Pixel atual mais presente na parte superior: " + pixelsMP1.pixelPresente1[0]
-							// + " - " + pixelsMP1.pixelPresente1[1] + " - " + pixelsMP1.pixelPresente1[2]);
-					// System.out.println("Quantidade desse pixel: "
-							// + pixelsMP1.contaPixelsSuperior[pixelsMP1.pixelPresente1[0]][pixelsMP1.pixelPresente1[1]][pixelsMP1.pixelPresente1[2]]);
-					// agora coleta o pixel mais presente na parte central
-					pixelsMP1 = retornaMaisPresenteNaParteCentral(pixelsMP1, imagemBI);
-					// System.out.println("Pixel atual mais presente na parte central: " + pixelsMP1.pixelPresente2[0]
-							// + " - " + pixelsMP1.pixelPresente2[1] + " - " + pixelsMP1.pixelPresente2[2]);
-					// System.out.println("Quantidade desse pixel: "
-							// + pixelsMP1.contaPixelsCentral[pixelsMP1.pixelPresente2[0]][pixelsMP1.pixelPresente2[1]][pixelsMP1.pixelPresente2[2]]);
-					// agora coleta o pixel mais presente na parte inferior
-					pixelsMP1 = retornaMaisPresenteNaParteInferior(pixelsMP1, imagemBI);
-					// System.out.println("Pixel atual mais presente na parte inferior: " + pixelsMP1.pixelPresente3[0]
-							// + " - " + pixelsMP1.pixelPresente3[1] + " - " + pixelsMP1.pixelPresente3[2]);
-					// System.out.println("Quantidade desse pixel: "
-							// + pixelsMP1.contaPixelsInferior[pixelsMP1.pixelPresente3[0]][pixelsMP1.pixelPresente3[1]][pixelsMP1.pixelPresente3[2]]);
-				} else if (ePersonagem1 == false) {
-					// System.out.println((c + 1) + "ª imagem analisada no momento: " + imagensPersonagem2[i]);
-					// System.out.println("Tamanho: " + (imagemBI.getWidth()) + "x" + (imagemBI.getHeight()));
-					// primeiro coleta o pixel mais presente na parte superior
-					pixelsMP2 = retornaMaisPresenteNaParteSuperior(pixelsMP2, imagemBI);
-					// System.out.println("Pixel atual mais presente na parte superior: " + pixelsMP2.pixelPresente1[0]
-							// + " - " + pixelsMP2.pixelPresente1[1] + " - " + pixelsMP2.pixelPresente1[2]);
-					// System.out.println("Quantidade desse pixel: "
-							// + pixelsMP2.contaPixelsSuperior[pixelsMP2.pixelPresente1[0]][pixelsMP2.pixelPresente1[1]][pixelsMP2.pixelPresente1[2]]);
-					// agora coleta o pixel mais presente na parte central
-					pixelsMP2 = retornaMaisPresenteNaParteCentral(pixelsMP2, imagemBI);
-					// System.out.println("Pixel atual mais presente na parte central: " + pixelsMP2.pixelPresente2[0]
-							// + " - " + pixelsMP2.pixelPresente2[1] + " - " + pixelsMP2.pixelPresente2[2]);
-					// System.out.println("Quantidade desse pixel: "
-							// + pixelsMP2.contaPixelsCentral[pixelsMP2.pixelPresente2[0]][pixelsMP2.pixelPresente2[1]][pixelsMP2.pixelPresente2[2]]);
-					// agora coleta o pixel mais presente na parte inferior
-					pixelsMP2 = retornaMaisPresenteNaParteInferior(pixelsMP2, imagemBI);
-					// System.out.println("Pixel atual mais presente na parte inferior: " + pixelsMP2.pixelPresente3[0]
-							// + " - " + pixelsMP2.pixelPresente3[1] + " - " + pixelsMP2.pixelPresente3[2]);
-					// System.out.println("Quantidade desse pixel: "
-							// + pixelsMP2.contaPixelsInferior[pixelsMP2.pixelPresente3[0]][pixelsMP2.pixelPresente3[1]][pixelsMP2.pixelPresente3[2]]);
+				try {
+					imagemBI = ImageIO.read(new File(caminhoImagemAtual));
+				} catch (IOException e) {
+					System.out.println("Erro com BufferedImage");
 				}
-			} else {
-				c--;
+
+				System.out.println((c + 1) + "ª imagem analisada no momento: " + imagensPersonagens[c]);
+				System.out.println("Tamanho: " + (imagemBI.getWidth()) + "x" + (imagemBI.getHeight()));
+				// primeiro coleta o pixel mais presente na parte superior
+				pixelsMP1 = retornaMaisPresenteNaParteSuperior(pixelsMP1, imagemBI);
+				System.out.println("Pixel atual mais presente na parte superior: " + pixelsMP1.pixelPresente1[0] + " - "
+						+ pixelsMP1.pixelPresente1[1] + " - " + pixelsMP1.pixelPresente1[2]);
+				System.out.println("Quantidade desse pixel: "
+						+ pixelsMP1.contaPixelsSuperior[pixelsMP1.pixelPresente1[0]][pixelsMP1.pixelPresente1[1]][pixelsMP1.pixelPresente1[2]]);
+				// agora coleta o pixel mais presente na parte central
+				pixelsMP1 = retornaMaisPresenteNaParteCentral(pixelsMP1, imagemBI);
+				System.out.println("Pixel atual mais presente na parte central: " + pixelsMP1.pixelPresente2[0] + " - "
+						+ pixelsMP1.pixelPresente2[1] + " - " + pixelsMP1.pixelPresente2[2]);
+				System.out.println("Quantidade desse pixel: "
+						+ pixelsMP1.contaPixelsCentral[pixelsMP1.pixelPresente2[0]][pixelsMP1.pixelPresente2[1]][pixelsMP1.pixelPresente2[2]]);
+				// agora coleta o pixel mais presente na parte inferior
+				pixelsMP1 = retornaMaisPresenteNaParteInferior(pixelsMP1, imagemBI);
+				System.out.println("Pixel atual mais presente na parte inferior: " + pixelsMP1.pixelPresente3[0] + " - "
+						+ pixelsMP1.pixelPresente3[1] + " - " + pixelsMP1.pixelPresente3[2]);
+				System.out.println("Quantidade desse pixel: "
+						+ pixelsMP1.contaPixelsInferior[pixelsMP1.pixelPresente3[0]][pixelsMP1.pixelPresente3[1]][pixelsMP1.pixelPresente3[2]]);
+			}
+		} else {
+			for (int c = 500; c < 540; c++) {
+				caminhoImagemAtual = "";
+				caminhoImagemAtual = caminhoImagemAtual.concat("imagens/");
+				caminhoImagemAtual = caminhoImagemAtual.concat(imagensPersonagens[c]);
+
+				try {
+					imagemBI = ImageIO.read(new File(caminhoImagemAtual));
+				} catch (IOException e) {
+					System.out.println("Erro com BufferedImage");
+				}
+
+				System.out.println((c - 499) + "ª imagem analisada no momento: " + imagensPersonagens[c]);
+				System.out.println("Tamanho: " + (imagemBI.getWidth()) + "x" + (imagemBI.getHeight()));
+				// primeiro coleta o pixel mais presente na parte superior
+				pixelsMP2 = retornaMaisPresenteNaParteSuperior(pixelsMP2, imagemBI);
+				System.out.println("Pixel atual mais presente na parte superior: " + pixelsMP2.pixelPresente1[0] + " - "
+						+ pixelsMP2.pixelPresente1[1] + " - " + pixelsMP2.pixelPresente1[2]);
+				System.out.println("Quantidade desse pixel: "
+						+ pixelsMP2.contaPixelsSuperior[pixelsMP2.pixelPresente1[0]][pixelsMP2.pixelPresente1[1]][pixelsMP2.pixelPresente1[2]]);
+				// agora coleta o pixel mais presente na parte central
+				pixelsMP2 = retornaMaisPresenteNaParteCentral(pixelsMP2, imagemBI);
+				System.out.println("Pixel atual mais presente na parte central: " + pixelsMP2.pixelPresente2[0] + " - "
+						+ pixelsMP2.pixelPresente2[1] + " - " + pixelsMP2.pixelPresente2[2]);
+				System.out.println("Quantidade desse pixel: "
+						+ pixelsMP2.contaPixelsCentral[pixelsMP2.pixelPresente2[0]][pixelsMP2.pixelPresente2[1]][pixelsMP2.pixelPresente2[2]]);
+				// agora coleta o pixel mais presente na parte inferior
+				pixelsMP2 = retornaMaisPresenteNaParteInferior(pixelsMP2, imagemBI);
+				System.out.println("Pixel atual mais presente na parte inferior: " + pixelsMP2.pixelPresente3[0] + " - "
+						+ pixelsMP2.pixelPresente3[1] + " - " + pixelsMP2.pixelPresente3[2]);
+				System.out.println("Quantidade desse pixel: "
+						+ pixelsMP2.contaPixelsInferior[pixelsMP2.pixelPresente3[0]][pixelsMP2.pixelPresente3[1]][pixelsMP2.pixelPresente3[2]]);
 			}
 		}
+
 		/*
 		 * salva informações de pixels mais presentes das imagens do personagem
 		 * analisado
@@ -132,12 +124,12 @@ public class AnalisaImagens {
 	 */
 	public static PixelsPresentes retornaMaisPresenteNaParteSuperior(PixelsPresentes pixelsMP, BufferedImage imagemBI) {
 		/*
-		 * percorre a imagem ignorando 15% em relação a largura nas bordas e 10% em
+		 * percorre a imagem ignorando 10% em relação a largura nas bordas e 10% em
 		 * relação a altura nas bordas. O foco é procurar pixels mais ao centro,
 		 * primeiro na parte superior analisada
 		 */
-		int larguraA = (int) (imagemBI.getWidth() * 0.16);
-		int larguraB = (int) (imagemBI.getWidth() * 0.38);
+		int larguraA = (int) (imagemBI.getWidth() * 0.11);
+		int larguraB = (int) (imagemBI.getWidth() * 0.36);
 		int alturaA = (int) (imagemBI.getHeight() * 0.11);
 		int alturaB = (int) (imagemBI.getHeight() * 0.36);
 		for (int y = alturaA; y < alturaB; y++) {
@@ -164,12 +156,12 @@ public class AnalisaImagens {
 	 */
 	public static PixelsPresentes retornaMaisPresenteNaParteCentral(PixelsPresentes pixelsMP, BufferedImage imagemBI) {
 		/*
-		 * percorre a imagem ignorando 15% em relação a largura nas bordas e 10% em
+		 * percorre a imagem ignorando 10% em relação a largura nas bordas e 10% em
 		 * relação a altura nas bordas. O foco é procurar pixels mais ao centro, agora
 		 * na parte central analisada
 		 */
-		int larguraA = (int) (imagemBI.getWidth() * 0.39);
-		int larguraB = (int) (imagemBI.getWidth() * 0.61);
+		int larguraA = (int) (imagemBI.getWidth() * 0.37);
+		int larguraB = (int) (imagemBI.getWidth() * 0.63);
 		int alturaA = (int) (imagemBI.getHeight() * 0.37);
 		int alturaB = (int) (imagemBI.getHeight() * 0.63);
 		for (int y = alturaA; y < alturaB; y++) {
@@ -196,12 +188,12 @@ public class AnalisaImagens {
 	 */
 	public static PixelsPresentes retornaMaisPresenteNaParteInferior(PixelsPresentes pixelsMP, BufferedImage imagemBI) {
 		/*
-		 * percorre a imagem ignorando 15% em relação a largura nas bordas e 10% em
+		 * percorre a imagem ignorando 10% em relação a largura nas bordas e 10% em
 		 * relação a altura nas bordas. O foco é procurar pixels mais ao centro, agora
 		 * na parte inferior analisada
 		 */
-		int larguraA = (int) (imagemBI.getWidth() * 0.62);
-		int larguraB = (int) (imagemBI.getWidth() * 0.84);
+		int larguraA = (int) (imagemBI.getWidth() * 0.64);
+		int larguraB = (int) (imagemBI.getWidth() * 0.89);
 		int alturaA = (int) (imagemBI.getHeight() * 0.64);
 		int alturaB = (int) (imagemBI.getHeight() * 0.89);
 		for (int y = alturaA; y < alturaB; y++) {
