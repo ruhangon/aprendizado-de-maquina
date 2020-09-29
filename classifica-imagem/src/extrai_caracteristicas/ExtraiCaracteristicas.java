@@ -26,7 +26,7 @@ public class ExtraiCaracteristicas {
 		exportacao += "@data\n";
 
 		// Diretório onde estão armazenadas as imagens
-		File diretorio = new File("imagens");
+		File diretorio = new File("imagens de treino");
 		File[] arquivos = diretorio.listFiles();
 
 		// Definição do vetor de características

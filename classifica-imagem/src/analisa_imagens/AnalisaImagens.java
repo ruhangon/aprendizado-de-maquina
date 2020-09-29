@@ -16,7 +16,7 @@ public class AnalisaImagens {
 		PixelsPresentes pixelsMP1 = new PixelsPresentes(); // armazenará os mais presentes do personagem 1
 		PixelsPresentes pixelsMP2 = new PixelsPresentes(); // armazenará os mais presentes do personagem 2
 
-		File pastaPersonagens = new File("imagens");
+		File pastaPersonagens = new File("imagens de treino");
 		String[] imagensPersonagens = pastaPersonagens.list();
 		String caminhoImagemAtual = ""; // mostrará a imagem atual com o seu caminho, para criar o buffered image
 		BufferedImage imagemBI = null;
@@ -24,7 +24,7 @@ public class AnalisaImagens {
 		if (ePersonagem1) {
 			for (int c = 0; c < 40; c++) {
 				caminhoImagemAtual = "";
-				caminhoImagemAtual = caminhoImagemAtual.concat("imagens/");
+				caminhoImagemAtual = caminhoImagemAtual.concat("imagens de treino/");
 				caminhoImagemAtual = caminhoImagemAtual.concat(imagensPersonagens[c]);
 
 				try {
@@ -55,9 +55,9 @@ public class AnalisaImagens {
 						+ pixelsMP1.contaPixelsInferior[pixelsMP1.pixelPresente3[0]][pixelsMP1.pixelPresente3[1]][pixelsMP1.pixelPresente3[2]]);
 			}
 		} else {
-			for (int c = 500; c < 540; c++) {
+			for (int c = 400; c < 440; c++) {
 				caminhoImagemAtual = "";
-				caminhoImagemAtual = caminhoImagemAtual.concat("imagens/");
+				caminhoImagemAtual = caminhoImagemAtual.concat("imagens de treino/");
 				caminhoImagemAtual = caminhoImagemAtual.concat(imagensPersonagens[c]);
 
 				try {
@@ -66,7 +66,7 @@ public class AnalisaImagens {
 					System.out.println("Erro com BufferedImage");
 				}
 
-				System.out.println((c - 499) + "ª imagem analisada no momento: " + imagensPersonagens[c]);
+				System.out.println((c - 399) + "ª imagem analisada no momento: " + imagensPersonagens[c]);
 				System.out.println("Tamanho: " + (imagemBI.getWidth()) + "x" + (imagemBI.getHeight()));
 				// primeiro coleta o pixel mais presente na parte superior
 				pixelsMP2 = retornaMaisPresenteNaParteSuperior(pixelsMP2, imagemBI);
