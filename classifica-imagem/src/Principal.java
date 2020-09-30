@@ -10,7 +10,7 @@ public class Principal {
 		System.out.println("--    Classifica imagens dos Simpsons    --");
 		System.out.println("Homer x Marge");
 		String menu = "\nMenu \n1. Analisa os pixels mais presentes em 40 imagens diferentes, para cada personagem \n2. Cria arquivo arff com características dos personagens"
-				+ "\n3. Analisa uma imagem de treino, pinta as características que encontrar, e salva na pasta de imagens analisadas \n4. ...\n0. Sai do programa";
+				+ "\n3. Analisa uma imagem, pinta as características que encontrar, e salva na pasta de imagens analisadas \n4. ...\n0. Sai do programa";
 		int op = -1;
 		int[][] pixelsPresentesPersonagem1 = new int[3][3];
 		int[][] pixelsPresentesPersonagem2 = new int[3][3];
@@ -42,8 +42,8 @@ public class Principal {
 
 				case 3:
 					System.out.println(
-							"Analisa uma imagem de treino, pinta as características que encontrar, e salva na pasta de imagens analisadas");
-					// aqui
+							"Analisa uma imagem, pinta as características que encontrar, e salva na pasta de imagens analisadas");
+					AnalisaImagens.examinaCaracteristicasEmImagem(scan);
 					break;
 
 				case 4:
