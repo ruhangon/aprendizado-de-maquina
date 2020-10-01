@@ -65,9 +65,9 @@ public class AlgoritmoDeNaiveBayes {
 			System.out.println(
 					"A probabilidade de ser Marge é: " + (decimalFormat.format(100 * qualPersonagem[1])) + "%");
 
-			if ((c <= 100) && (qualPersonagem[0] > qualPersonagem[1]))
+			if ((c <= 200) && (qualPersonagem[0] > qualPersonagem[1]))
 				contAcertosHomer++;
-			if ((c > 100) && (qualPersonagem[1] > qualPersonagem[0]))
+			if ((c > 200) && (qualPersonagem[1] > qualPersonagem[0]))
 				contAcertosMarge++;
 
 			c++;

@@ -30,7 +30,7 @@ public class ExtraiCaracteristicas {
 		File[] arquivos = diretorio.listFiles();
 
 		// Definição do vetor de características
-		double[][] caracteristicas = new double[800][7];
+		double[][] caracteristicas = new double[1600][7];
 
 		// Percorre todas as imagens do diretório
 		int cont = -1;
@@ -192,7 +192,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isMargeCaracteristica1(double r, double g, double b) {
-		if (b >= 136 && b <= 206 && g >= 39 && g <= 109 && r >= 35 && r <= 105) {
+		if (b >= 129 && b <= 199 && g >= 48 && g <= 118 && r >= 33 && r <= 103) {
 			return true;
 		}
 		return false;
@@ -203,7 +203,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isMargeCaracteristica2(double r, double g, double b) {
-		if (b >= 0 && b <= 36 && g >= 39 && g <= 109 && r >= 113 && r <= 183) {
+		if (b >= 74 && b <= 144 && g >= 83 && g <= 153 && r >= 96 && r <= 166) {
 			return true;
 		}
 		return false;
@@ -214,7 +214,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isMargeCaracteristica3(double r, double g, double b) {
-		if (b >= 0 && b <= 47 && g >= 10 && g <= 90 && r >= 43 && r <= 123) {
+		if (b >= 103 && b <= 173 && g >= 84 && g <= 154 && r >= 23 && r <= 93) {
 			return true;
 		}
 		return false;
