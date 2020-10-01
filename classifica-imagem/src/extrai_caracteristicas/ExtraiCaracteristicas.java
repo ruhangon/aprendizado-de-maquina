@@ -30,7 +30,7 @@ public class ExtraiCaracteristicas {
 		File[] arquivos = diretorio.listFiles();
 
 		// Definição do vetor de características
-		double[][] caracteristicas = new double[1000][7];
+		double[][] caracteristicas = new double[800][7];
 
 		// Percorre todas as imagens do diretório
 		int cont = -1;
@@ -97,27 +97,30 @@ public class ExtraiCaracteristicas {
 				double g = (double) cor.getGreen();
 				double b = (double) cor.getBlue();
 
-				if (isHomerCaracteristica1(r, g, b)) {
+				if (i < (h / 3) && isHomerCaracteristica1(r, g, b)) {
 					homerCaracteristica1++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 128 });
 				}
-				if (isHomerCaracteristica2(r, g, b)) {
+				if (i > (h / 3) && i < (h / 7) && isHomerCaracteristica2(r, g, b)) {
 					homerCaracteristica2++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 128 });
 				}
-				if (isHomerCaracteristica3(r, g, b)) {
+				if (i > (h / 7) && isHomerCaracteristica3(r, g, b)) {
 					homerCaracteristica3++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 128 });
 				}
-				if (isMargeCaracteristica1(r, g, b)) {
+				if (i < (h / 3) && isMargeCaracteristica1(r, g, b)) {
+					// if (isMargeCaracteristica1(r, g, b)) {
 					margeCaracteristica1++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 255 });
 				}
-				if (isMargeCaracteristica2(r, g, b)) {
+				if (i > (h / 3) && i < (h / 7) && isMargeCaracteristica2(r, g, b)) {
+					// if (isMargeCaracteristica2(r, g, b)) {
 					margeCaracteristica2++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 255 });
 				}
-				if (isMargeCaracteristica3(r, g, b)) {
+				if (i > (h / 7) && isMargeCaracteristica3(r, g, b)) {
+					// if (isMargeCaracteristica3(r, g, b)) {
 					margeCaracteristica3++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 255 });
 				}
@@ -156,7 +159,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isHomerCaracteristica1(double r, double g, double b) {
-		if (b >= 0 && b <= 20 && g >= 116 && g <= 156 && r >= 110 && r <= 150) {
+		if (b >= 100 && b <= 140 && g >= 87 && g <= 127 && r >= 171 && r <= 211) {
 			return true;
 		}
 		return false;
@@ -167,7 +170,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isHomerCaracteristica2(double r, double g, double b) {
-		if (b >= 81 && b <= 121 && g >= 131 && g <= 171 && r >= 161 && r <= 201) {
+		if (b >= 0 && b <= 26 && g >= 117 && g <= 157 && r >= 26 && r <= 66) {
 			return true;
 		}
 		return false;
@@ -178,7 +181,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isHomerCaracteristica3(double r, double g, double b) {
-		if (b >= 110 && b <= 150 && g >= 85 && g <= 125 && r >= 171 && r <= 211) {
+		if (b >= 62 && b <= 102 && g >= 71 && g <= 111 && r >= 84 && r <= 124) {
 			return true;
 		}
 		return false;
@@ -189,7 +192,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isMargeCaracteristica1(double r, double g, double b) {
-		if (b >= 162 && b <= 202 && g >= 112 && g <= 152 && r >= 46 && r <= 86) {
+		if (b >= 136 && b <= 206 && g >= 39 && g <= 109 && r >= 35 && r <= 105) {
 			return true;
 		}
 		return false;
@@ -197,12 +200,10 @@ public class ExtraiCaracteristicas {
 
 	/*
 	 * valores dos pixels foram escolhidos de acordo com os pixels presentes,
-	 * descobertos pelo programa. Segundo pixel presente da Marge foi igual ao
-	 * primeiro, então foi tirado outro com bastante aparições da lista, encontrado
-	 * anteriormente
+	 * descobertos pelo programa
 	 */
 	public static boolean isMargeCaracteristica2(double r, double g, double b) {
-		if (b >= 171 && b <= 211 && g >= 191 && g <= 231 && r >= 168 && r <= 208) {
+		if (b >= 0 && b <= 36 && g >= 39 && g <= 109 && r >= 113 && r <= 183) {
 			return true;
 		}
 		return false;
@@ -213,7 +214,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isMargeCaracteristica3(double r, double g, double b) {
-		if (b >= 0 && b <= 29 && g >= 11 && g <= 51 && r >= 93 && r <= 133) {
+		if (b >= 0 && b <= 47 && g >= 10 && g <= 90 && r >= 43 && r <= 123) {
 			return true;
 		}
 		return false;
