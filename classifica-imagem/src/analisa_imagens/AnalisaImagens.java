@@ -53,14 +53,14 @@ public class AnalisaImagens {
 						+ pixelsMP1.contaPixelsInferior[pixelsMP1.pixelPresente3[0]][pixelsMP1.pixelPresente3[1]][pixelsMP1.pixelPresente3[2]]);
 			}
 		} else {
-			for (int c = 900; c < 1000; c++) {
+			for (int c = 1200; c < 1300; c++) {
 				try {
 					imagemBI = ImageIO.read(arquivos[c]);
 				} catch (IOException e) {
 					System.out.println("Erro com BufferedImage");
 				}
 
-				System.out.println((c - 899) + "ª imagem analisada no momento: " + arquivos[c]);
+				System.out.println((c - 1199) + "ª imagem analisada no momento: " + arquivos[c]);
 				System.out.println("Tamanho: " + (imagemBI.getWidth()) + "x" + (imagemBI.getHeight()));
 				// primeiro coleta o pixel mais presente na parte superior
 				pixelsMP2 = retornaMaisPresenteNaParteSuperior(pixelsMP2, imagemBI);

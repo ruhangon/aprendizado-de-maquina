@@ -192,7 +192,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isMargeCaracteristica1(double r, double g, double b) {
-		if (b >= 129 && b <= 199 && g >= 48 && g <= 118 && r >= 33 && r <= 103) {
+		if (b >= 131 && b <= 221 && g >= 39 && g <= 109 && r >= 35 && r <= 105) {
 			return true;
 		}
 		return false;
@@ -203,7 +203,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isMargeCaracteristica2(double r, double g, double b) {
-		if (b >= 74 && b <= 144 && g >= 83 && g <= 153 && r >= 96 && r <= 166) {
+		if (b >= 93 && b <= 153 && g >= 94 && g <= 154 && r >= 175 && r <= 235) {
 			return true;
 		}
 		return false;
@@ -214,7 +214,7 @@ public class ExtraiCaracteristicas {
 	 * descobertos pelo programa
 	 */
 	public static boolean isMargeCaracteristica3(double r, double g, double b) {
-		if (b >= 103 && b <= 173 && g >= 84 && g <= 154 && r >= 23 && r <= 93) {
+		if (b >= 0 && b <= 30 && g >= 42 && g <= 102 && r >= 112 && r <= 172) {
 			return true;
 		}
 		return false;

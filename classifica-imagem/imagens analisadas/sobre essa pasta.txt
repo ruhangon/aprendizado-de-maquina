@@ -1,0 +1,1 @@
+Aqui ficam as imagens que serão salvas depois de serem analisadas pelo programa.
