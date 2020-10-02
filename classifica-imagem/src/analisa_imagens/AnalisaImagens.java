@@ -244,38 +244,56 @@ public class AnalisaImagens {
 				int g = cor.getGreen();
 				int b = cor.getBlue();
 
-				// caracteristica 1 do Homer
-				if (b >= 0 && b <= 20 && g >= 116 && g <= 156 && r >= 110 && r <= 150) {
+				/*
+				 * característica 1 do Homer. Fica na parte superior da imagem
+				 */
+				if ((y < (imagemBI.getHeight() / 3)) && b >= 100 && b <= 140 && g >= 87 && g <= 127 && r >= 171
+						&& r <= 211) {
 					imagemBI.setRGB(x, y, corHomer.getRGB());
 					contModificacoes++;
 				}
 
-				// característica 2 do Homer
-				if (b >= 81 && b <= 121 && g >= 131 && g <= 171 && r >= 161 && r <= 201) {
+				/*
+				 * característica 2 do Homer. Fica na parte central da imagem
+				 */
+				if ((y > (imagemBI.getHeight() / 3)) && (y < (imagemBI.getHeight() / 7)) && b >= 0 && b <= 26
+						&& g >= 117 && g <= 157 && r >= 26 && r <= 66) {
 					imagemBI.setRGB(x, y, corHomer.getRGB());
 					contModificacoes++;
 				}
 
-				// característica 3 do Homer
-				if (b >= 110 && b <= 150 && g >= 85 && g <= 125 && r >= 171 && r <= 211) {
+				/*
+				 * característica 3 do Homer. Fica na parte inferior da imagem
+				 */
+				if ((y > (imagemBI.getHeight() / 7)) && b >= 62 && b <= 102 && g >= 71 && g <= 111 && r >= 84
+						&& r <= 124) {
 					imagemBI.setRGB(x, y, corHomer.getRGB());
 					contModificacoes++;
 				}
 
-				// característica 1 da Marge
-				if (b >= 162 && b <= 202 && g >= 112 && g <= 152 && r >= 46 && r <= 86) {
+				/*
+				 * característica 1 da Marge. Fica na parte superior da imagem
+				 */
+				if ((y < (imagemBI.getHeight() / 3)) && b >= 131 && b <= 221 && g >= 39 && g <= 109 && r >= 35
+						&& r <= 105) {
 					imagemBI.setRGB(x, y, corMarge.getRGB());
 					contModificacoes++;
 				}
 
-				// característica 2 da Marge
-				if (b >= 171 && b <= 211 && g >= 191 && g <= 231 && r >= 168 && r <= 208) {
+				/*
+				 * característica 2 da Marge. Fica na parte central da imagem
+				 */
+				if ((y > (imagemBI.getHeight() / 3)) && (y < (imagemBI.getHeight() / 7)) && b >= 93 && b <= 153
+						&& g >= 94 && g <= 154 && r >= 175 && r <= 235) {
 					imagemBI.setRGB(x, y, corMarge.getRGB());
 					contModificacoes++;
 				}
 
-				// característica 3 da Marge
-				if (b >= 0 && b <= 29 && g >= 11 && g <= 51 && r >= 93 && r <= 133) {
+				/*
+				 * característica 3 da Marge. Fica na parte inferior da imagem
+				 */
+				if ((y > (imagemBI.getHeight() / 7)) && b >= 0 && b <= 30 && g >= 42 && g <= 102 && r >= 112
+						&& r <= 172) {
 					imagemBI.setRGB(x, y, corMarge.getRGB());
 					contModificacoes++;
 				}
