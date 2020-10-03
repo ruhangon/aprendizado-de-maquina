@@ -146,7 +146,7 @@ public class AnalisaImagens {
 	public static PixelsPresentes retornaMaisPresenteNaParteCentral(PixelsPresentes pixelsMP, BufferedImage imagemBI) {
 		int larguraA = 0;
 		int larguraB = imagemBI.getWidth();
-		int alturaA = (int) (imagemBI.getHeight() * 0.35);
+		int alturaA = (int) (imagemBI.getHeight() * 0.34);
 		int alturaB = (int) (imagemBI.getHeight() * 0.67);
 		for (int y = alturaA; y < alturaB; y++) {
 			for (int x = larguraA; x < larguraB; x++) {
@@ -173,7 +173,7 @@ public class AnalisaImagens {
 	public static PixelsPresentes retornaMaisPresenteNaParteInferior(PixelsPresentes pixelsMP, BufferedImage imagemBI) {
 		int larguraA = 0;
 		int larguraB = imagemBI.getWidth();
-		int alturaA = (int) (imagemBI.getHeight() * 0.68);
+		int alturaA = (int) (imagemBI.getHeight() * 0.67);
 		int alturaB = imagemBI.getHeight();
 		for (int y = alturaA; y < alturaB; y++) {
 			for (int x = larguraA; x < larguraB; x++) {

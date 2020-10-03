@@ -89,6 +89,9 @@ public class ExtraiCaracteristicas {
 		int w = img.getWidth();
 		int h = img.getHeight();
 
+		int alturaAux1 = (int) (img.getHeight() * 0.34);
+		int alturaAux2 = (int) (img.getHeight() * 0.67);
+
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < w; j++) {
 				// Color cor = pr.getColor(j, i);
@@ -97,29 +100,29 @@ public class ExtraiCaracteristicas {
 				double g = (double) cor.getGreen();
 				double b = (double) cor.getBlue();
 
-				if (i < (h / 3) && isHomerCaracteristica1(r, g, b)) {
+				if (i < alturaAux1 && isHomerCaracteristica1(r, g, b)) {
 					homerCaracteristica1++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 128 });
 				}
-				if (i > (h / 3) && i < (h / 7) && isHomerCaracteristica2(r, g, b)) {
+				if (i > alturaAux1 && i < alturaAux2 && isHomerCaracteristica2(r, g, b)) {
 					homerCaracteristica2++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 128 });
 				}
-				if (i > (h / 7) && isHomerCaracteristica3(r, g, b)) {
+				if (i > alturaAux2 && isHomerCaracteristica3(r, g, b)) {
 					homerCaracteristica3++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 128 });
 				}
-				if (i < (h / 3) && isMargeCaracteristica1(r, g, b)) {
+				if (i < alturaAux1 && isMargeCaracteristica1(r, g, b)) {
 					// if (isMargeCaracteristica1(r, g, b)) {
 					margeCaracteristica1++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 255 });
 				}
-				if (i > (h / 3) && i < (h / 7) && isMargeCaracteristica2(r, g, b)) {
+				if (i > alturaAux1 && i < alturaAux2 && isMargeCaracteristica2(r, g, b)) {
 					// if (isMargeCaracteristica2(r, g, b)) {
 					margeCaracteristica2++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 255 });
 				}
-				if (i > (h / 7) && isMargeCaracteristica3(r, g, b)) {
+				if (i > alturaAux2 && isMargeCaracteristica3(r, g, b)) {
 					// if (isMargeCaracteristica3(r, g, b)) {
 					margeCaracteristica3++;
 					imagemProcessada.put(i, j, new double[] { 0, 255, 255 });
