@@ -229,6 +229,8 @@ public class AnalisaImagens {
 			System.out.println("Erro com buffered image");
 		}
 		int contModificacoes = 0; // conta o número de pixels que foram modificados na imagem
+		int alturaAux1 = (int) (imagemBI.getHeight() * 0.34);
+		int alturaAux2 = (int) (imagemBI.getHeight() * 0.67);
 
 		/*
 		 * se encontrar um pixel com as características do Homer usa a cor abaixo para
@@ -247,8 +249,7 @@ public class AnalisaImagens {
 				/*
 				 * característica 1 do Homer. Fica na parte superior da imagem
 				 */
-				if ((y < (imagemBI.getHeight() / 3)) && b >= 100 && b <= 140 && g >= 87 && g <= 127 && r >= 171
-						&& r <= 211) {
+				if (y < alturaAux1 && b >= 100 && b <= 140 && g >= 87 && g <= 127 && r >= 171 && r <= 211) {
 					imagemBI.setRGB(x, y, corHomer.getRGB());
 					contModificacoes++;
 				}
@@ -256,8 +257,8 @@ public class AnalisaImagens {
 				/*
 				 * característica 2 do Homer. Fica na parte central da imagem
 				 */
-				if ((y > (imagemBI.getHeight() / 3)) && (y < (imagemBI.getHeight() / 7)) && b >= 0 && b <= 26
-						&& g >= 117 && g <= 157 && r >= 26 && r <= 66) {
+				if (y > alturaAux1 && y < alturaAux2 && b >= 0 && b <= 26 && g >= 117 && g <= 157 && r >= 26
+						&& r <= 66) {
 					imagemBI.setRGB(x, y, corHomer.getRGB());
 					contModificacoes++;
 				}
@@ -265,8 +266,7 @@ public class AnalisaImagens {
 				/*
 				 * característica 3 do Homer. Fica na parte inferior da imagem
 				 */
-				if ((y > (imagemBI.getHeight() / 7)) && b >= 62 && b <= 102 && g >= 71 && g <= 111 && r >= 84
-						&& r <= 124) {
+				if (y > alturaAux2 && b >= 62 && b <= 102 && g >= 71 && g <= 111 && r >= 84 && r <= 124) {
 					imagemBI.setRGB(x, y, corHomer.getRGB());
 					contModificacoes++;
 				}
@@ -274,8 +274,7 @@ public class AnalisaImagens {
 				/*
 				 * característica 1 da Marge. Fica na parte superior da imagem
 				 */
-				if ((y < (imagemBI.getHeight() / 3)) && b >= 131 && b <= 221 && g >= 39 && g <= 109 && r >= 35
-						&& r <= 105) {
+				if (y < alturaAux1 && b >= 131 && b <= 221 && g >= 39 && g <= 109 && r >= 35 && r <= 105) {
 					imagemBI.setRGB(x, y, corMarge.getRGB());
 					contModificacoes++;
 				}
@@ -283,8 +282,8 @@ public class AnalisaImagens {
 				/*
 				 * característica 2 da Marge. Fica na parte central da imagem
 				 */
-				if ((y > (imagemBI.getHeight() / 3)) && (y < (imagemBI.getHeight() / 7)) && b >= 93 && b <= 153
-						&& g >= 94 && g <= 154 && r >= 175 && r <= 235) {
+				if (y > alturaAux1 && y < alturaAux2 && b >= 93 && b <= 153 && g >= 94 && g <= 154 && r >= 175
+						&& r <= 235) {
 					imagemBI.setRGB(x, y, corMarge.getRGB());
 					contModificacoes++;
 				}
@@ -292,8 +291,7 @@ public class AnalisaImagens {
 				/*
 				 * característica 3 da Marge. Fica na parte inferior da imagem
 				 */
-				if ((y > (imagemBI.getHeight() / 7)) && b >= 0 && b <= 30 && g >= 42 && g <= 102 && r >= 112
-						&& r <= 172) {
+				if (y > alturaAux2 && b >= 0 && b <= 30 && g >= 42 && g <= 102 && r >= 112 && r <= 172) {
 					imagemBI.setRGB(x, y, corMarge.getRGB());
 					contModificacoes++;
 				}
