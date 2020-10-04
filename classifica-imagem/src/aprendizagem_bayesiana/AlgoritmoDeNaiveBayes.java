@@ -3,8 +3,11 @@ package aprendizagem_bayesiana;
 import java.io.File;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Random;
 
 import extrai_caracteristicas.ExtraiCaracteristicas;
+import weka.classifiers.Classifier;
+import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.core.DenseInstance;
 import weka.core.Instance;
@@ -76,6 +79,28 @@ public class AlgoritmoDeNaiveBayes {
 		// mostra quantos acertos teve para cada personagem
 		System.out.println("Homer teve " + contAcertosHomer + " acertos");
 		System.out.println("Marge teve " + contAcertosMarge + " acertos");
+	}
+
+	/*
+	 * mostra matriz de confusão dos dados
+	 */
+	public static void mostraMatrizDeConfusao() {
+		try {
+			DataSource ds = new DataSource("caracteristicas.arff");
+			Instances inst = ds.getDataSet();
+			inst.setClassIndex(inst.numAttributes() - 1);
+
+			Classifier cls = new NaiveBayes();
+
+			Evaluation evaluation = new Evaluation(inst);
+			Random rand = new Random(1);
+			int folds = 10;
+			evaluation.crossValidateModel(cls, inst, folds, rand);
+
+			System.out.println(evaluation.toMatrixString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

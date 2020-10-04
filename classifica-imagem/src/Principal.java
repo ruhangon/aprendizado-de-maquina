@@ -23,7 +23,7 @@ public class Principal {
 		System.out.println("Homer x Marge");
 		String menu = "\nMenu \n1. Analisa os pixels mais presentes em 100 imagens diferentes, para cada personagem \n2. Cria arquivo arff com características dos personagens"
 				+ "\n3. Analisa uma imagem, pinta as características que encontrar, e salva na pasta de imagens analisadas \n4. Usa algoritmo de naive Bayes em uma imagem \n5. Usa algoritmo de naive Bayes nas imagens de teste"
-				+ "\n6. Gera matriz de confusão\n0. Sai do programa";
+				+ "\n6. Mostra matriz de confusão\n0. Sai do programa";
 		int op = -1;
 		int[][] pixelsPresentesPersonagem1 = new int[3][3];
 		int[][] pixelsPresentesPersonagem2 = new int[3][3];
@@ -78,6 +78,8 @@ public class Principal {
 					break;
 
 				case 6:
+					System.out.println("Mostra matriz de confusão");
+					AlgoritmoDeNaiveBayes.mostraMatrizDeConfusao();
 					break;
 
 				case 0:
