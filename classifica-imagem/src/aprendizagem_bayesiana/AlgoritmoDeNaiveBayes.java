@@ -82,7 +82,7 @@ public class AlgoritmoDeNaiveBayes {
 	}
 
 	/*
-	 * mostra matriz de confusão dos dados
+	 * mostra matriz de confusão para naive Bayes
 	 */
 	public static void mostraMatrizDeConfusao() {
 		try {

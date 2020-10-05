@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import analisa_imagens.AnalisaImagens;
 import aprendizagem_bayesiana.AlgoritmoDeNaiveBayes;
+import arvores_de_decisao.AlgoritmoDeJ48;
 import extrai_caracteristicas.ExtraiCaracteristicas;
 
 public class Principal {
@@ -23,10 +24,12 @@ public class Principal {
 		System.out.println("Homer x Marge");
 		String menu = "\nMenu \n1. Analisa os pixels mais presentes em 100 imagens diferentes, para cada personagem \n2. Cria arquivo arff com características dos personagens"
 				+ "\n3. Analisa uma imagem, pinta as características que encontrar, e salva na pasta de imagens analisadas \n4. Usa algoritmo de naive Bayes em uma imagem \n5. Usa algoritmo de naive Bayes nas imagens de teste"
-				+ "\n6. Mostra matriz de confusão\n0. Sai do programa";
+				+ "\n6. Usa algoritmo de J48 em uma imagem \n7. Mostra matriz de confusão para algoritmo de naive Bayes \n8. Mostra matriz de confusão para algoritmo de J48 \n0. Sai do programa";
 		int op = -1;
 		int[][] pixelsPresentesPersonagem1 = new int[3][3];
 		int[][] pixelsPresentesPersonagem2 = new int[3][3];
+		DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+		decimalFormat.setRoundingMode(RoundingMode.DOWN);
 
 		do {
 			try {
@@ -36,8 +39,8 @@ public class Principal {
 				scan.nextLine();
 				switch (op) {
 				case 1:
-					System.out
-							.println("Analisa os pixels mais presentes em 100 imagens diferentes, para cada personagem");
+					System.out.println(
+							"Analisa os pixels mais presentes em 100 imagens diferentes, para cada personagem");
 					boolean ePersonagem1 = true;
 					pixelsPresentesPersonagem1 = AnalisaImagens.descobrePixelsMaisPresentes(ePersonagem1);
 					ePersonagem1 = false;
@@ -61,15 +64,13 @@ public class Principal {
 
 				case 4:
 					System.out.println("Usa naive Bayes em uma imagem");
-					File arquivo = pedeArquivo(scan);
-					double[] caracteristicasImagem = ExtraiCaracteristicas.extraiCaracteristicas(arquivo);
-					double[] qualPersonagem = AlgoritmoDeNaiveBayes.naiveBayes(caracteristicasImagem);
-					DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-					decimalFormat.setRoundingMode(RoundingMode.DOWN);
-					System.out.println(
-							"A probabilidade de ser Homer é: " + (decimalFormat.format(100 * qualPersonagem[0])) + "%");
-					System.out.println(
-							"A probabilidade de ser Marge é: " + (decimalFormat.format(100 * qualPersonagem[1])) + "%");
+					File arquivoNB = pedeArquivo(scan);
+					double[] caracteristicasImagemNB = ExtraiCaracteristicas.extraiCaracteristicas(arquivoNB);
+					double[] qualPersonagemNB = AlgoritmoDeNaiveBayes.naiveBayes(caracteristicasImagemNB);
+					System.out.println("A probabilidade de ser Homer é: "
+							+ (decimalFormat.format(100 * qualPersonagemNB[0])) + "%");
+					System.out.println("A probabilidade de ser Marge é: "
+							+ (decimalFormat.format(100 * qualPersonagemNB[1])) + "%");
 					break;
 
 				case 5:
@@ -78,8 +79,24 @@ public class Principal {
 					break;
 
 				case 6:
-					System.out.println("Mostra matriz de confusão");
+					System.out.println("Usa J48 em uma imagem");
+					File arquivoDT = pedeArquivo(scan);
+					double[] caracteristicasImagemDT = ExtraiCaracteristicas.extraiCaracteristicas(arquivoDT);
+					double[] qualPersonagemDT = AlgoritmoDeJ48.j48(caracteristicasImagemDT);
+					System.out.println("A probabilidade de ser Homer é: "
+							+ (decimalFormat.format(100 * qualPersonagemDT[0])) + "%");
+					System.out.println("A probabilidade de ser Marge é: "
+							+ (decimalFormat.format(100 * qualPersonagemDT[1])) + "%");
+					break;
+
+				case 7:
+					System.out.println("Mostra matriz de confusão para naive Bayes");
 					AlgoritmoDeNaiveBayes.mostraMatrizDeConfusao();
+					break;
+
+				case 8:
+					System.out.println("Mostra matriz de confusão para J48");
+					AlgoritmoDeJ48.mostraMatrizDeConfusao();
 					break;
 
 				case 0:
