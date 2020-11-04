@@ -7,7 +7,7 @@ import pandas as pd
 
 print("Classifica áudios")
 print("Cachorro x Gato")
-menu = "\nMenu \nop1. Cria arquivo arff com informações de sons de treino \nop2. Exibe características de um arquivo wav \nop3. Analisa as informações dos arquivos de teste \nop0. Sai do programa"
+menu = "\nMenu \nop1. Cria arquivo arff com informações de sons de treino \nop2. Exibe características de um arquivo wav \nop3. Usa RNA perceptron multicamadas em arquivos de teste \nop4. Usa RNA perceptron multicamadas em arquivo passado \nop0. Sai do programa"
 op=""
 extracao=ExtracaoDeCaracteristica()
 mlp=AlgoritmoDeMLP()
@@ -53,8 +53,13 @@ while(True):
 		extracao.exibe_valores_mfcc_de_um_arquivo()
 
 	if (op=="op3"):
-		print("Analisa as informações dos arquivos de teste")
+		print("Usa RNA perceptron multicamadas em arquivos de teste")
 		mlp.analisa_arquivos_de_teste(treino_x, treino_y, teste_x, teste_y)
+
+	if (op=="op4"):
+		print("Usa RNA perceptron multicamadas em arquivo passado")
+		caminho, lista_x=extracao.retorna_valores_mfcc_de_um_arquivo()
+		mlp.analisa_um_arquivo(treino_x, treino_y, caminho, lista_x)
 
 	if (op=="op0"):
 		break

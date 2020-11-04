@@ -52,6 +52,13 @@ class ExtracaoDeCaracteristica:
             lista5.append(lista_mfcc[i][4])
         return lista1, lista2, lista3, lista4, lista5
 
+    def retorna_valores_mfcc_de_um_arquivo(self):
+        caminho=input("Digite o caminho de um arquivo a ser analisado")
+        dados_do_arquivo, rate_do_arquivo = librosa.load(caminho)
+        mfcc_2d = librosa.feature.mfcc(y=dados_do_arquivo, sr=rate_do_arquivo) # pega mfcc em 2d
+        lista_mfcc = self.retorna_valores_de_mediana(mfcc_2d) # consegue lista de mediana de valores mfcc
+        return caminho, lista_mfcc
+
 class AlgoritmoDeMLP:
     def analisa_arquivos_de_teste(self, treino_x, treino_y, teste_x, teste_y):
         SEED = 10
@@ -61,4 +68,16 @@ class AlgoritmoDeMLP:
         previsoes = modelo.predict(teste_x)
         acuracia = accuracy_score(teste_y, previsoes) * 100
         print("A acurácia usando rede neural perceptron multicamadas foi %.2f%%" % acuracia)
+
+    def analisa_um_arquivo(self, treino_x, treino_y, caminho, x_arq):
+        SEED = 10
+        np.random.seed(SEED)
+        x_list=[]
+        x_list.append(x_arq)
+        y_arq = [0 if "cat" in caminho else 1]
+        modelo = MLPClassifier(learning_rate_init=0.003, max_iter=650)
+        modelo.fit(treino_x, treino_y)
+        previsoes = modelo.predict(x_list)
+        acuracia = accuracy_score(y_arq, previsoes) * 100
+        print("A acurácia do arquivo usando rede neural perceptron multicamadas foi %.2f%%" % acuracia)
 
