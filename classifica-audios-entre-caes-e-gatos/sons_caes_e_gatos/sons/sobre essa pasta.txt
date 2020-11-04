@@ -1,0 +1,2 @@
+aqui ficam os arquivos de áudio do dataset de cães e gatos, tanto os de teste quanto os de treino
+
