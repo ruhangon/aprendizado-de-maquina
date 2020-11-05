@@ -2,6 +2,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.neural_network import MLPClassifier
 import librosa
 import numpy as np
+import pandas as pd
 
 class ExtracaoDeCaracteristica:
     def retorna_valores_de_mediana(self, lista):
@@ -58,6 +59,10 @@ class ExtracaoDeCaracteristica:
         mfcc_2d = librosa.feature.mfcc(y=dados_do_arquivo, sr=rate_do_arquivo) # pega mfcc em 2d
         lista_mfcc = self.retorna_valores_de_mediana(mfcc_2d) # consegue lista de mediana de valores mfcc
         return caminho, lista_mfcc
+
+    def salva_caracteristicas_extraidas(self, data):
+        data.to_csv("caracteristicas.csv")
+        print("o processo foi realizado")
 
 class AlgoritmoDeMLP:
     def analisa_arquivos_de_teste(self, treino_x, treino_y, teste_x, teste_y):
