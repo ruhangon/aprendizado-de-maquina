@@ -36,7 +36,7 @@ class AlgoritmoDeKMeans:
         print(dataset_completo.loc[jogo_inicial])
         print()
         print("Você pode gostar dos seguintes jogos:")
-        for num in range(1, 6):
+        for num in range(1, 4):
             indicacao = info_grupo.index[num]
             print(dataset_completo.loc[indicacao])
 
